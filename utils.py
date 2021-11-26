@@ -16,7 +16,7 @@ with open('duplicated.json', 'rb') as f:
 
 def parseId(x):
     if x:
-        id = x.attrs['id'].replace('§', '-')
+        id = x.attrs['id'].split('§', 1)[-1]
         return duplicated.get(id, id)
 
 
