@@ -30,7 +30,6 @@ def parseName(x):
 
 def parseValue(x):
     if x:
-        print(x.text.strip())
         try:
             dry_text = x.text.replace('*', '').strip()
             return Decimal(dry_text)
