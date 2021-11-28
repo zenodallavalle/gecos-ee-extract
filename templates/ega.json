@@ -1,0 +1,20 @@
+[
+  [
+    "$Emogas Analisi Arterioso:",
+    "T300A#pH",
+    "T300B#pCO2",
+    "T300C#pO2",
+    "T300R#P/FRatio",
+    "T300D#HCO3",
+    "T13006#Lattato",
+    "T300F#BE",
+    "T300G#SO2",
+    "T1306#Na",
+    "T1406#K",
+    "T300H#Cl",
+    "T100#Calcio",
+    "T300H#Cloro",
+    "T7100026#Emoglobina",
+    "T1206#Glucosio"
+  ]
+]
