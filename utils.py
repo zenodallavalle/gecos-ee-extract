@@ -195,5 +195,4 @@ def apply(df, template='default'):
 
     pyperclip.copy(output)
     print('Copyed to clipboard!')
-    input('Type enter to close this window')
     return output
