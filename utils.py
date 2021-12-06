@@ -16,7 +16,7 @@ with open('duplicated.json', 'rb') as f:
 
 def parseId(x):
     if x:
-        id = x.attrs['id'].replace('§', '-')
+        id = x.attrs['id'].split('§', 1)[-1]
         return duplicated.get(id, id)
 
 
@@ -133,6 +133,7 @@ def compile_value(df, id):
                 _unit = serie.unit or ''
             except KeyError:
                 _unit = ''
+            # replace the greek mi with u
             _unit = _unit.encode('utf-8').replace(b'\xc2\xb5',
                                                   'u'.encode('utf-8')).decode('utf-8').lower().strip()
             if unit:
@@ -185,8 +186,13 @@ def apply(df, template='default'):
 
             if len(output_chunks) > 0:
                 output_lines.append('{}.'.format(', '.join(output_chunks)))
-    output = os.linesep.join([f'- {l}' for l in output_lines])
+
+    if len(output_lines) > 1:
+        output_lines = [f'- {l}' for l in output_lines]
+
+    output = os.linesep.join(output_lines)
+    output = output.replace(':.', ':').replace(':,', ':')
+
     pyperclip.copy(output)
     print('Copyed to clipboard!')
-    input('Type enter to close this window')
     return output
