@@ -10,14 +10,12 @@ EEE_RUN_MODE = os.environ.get('EEE_RUN_MODE', 'production')
 
 with open('dictionary.json', 'rb') as f:
     dictionary = json.load(f)
-with open('duplicated.json', 'rb') as f:
-    duplicated = json.load(f)
 
 
 def parseId(x):
     if x:
         id = x.attrs['id'].split('§', 1)[-1]
-        return duplicated.get(id, id)
+        return id
 
 
 def parseName(x):
