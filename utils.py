@@ -14,7 +14,7 @@ with open('dictionary.json', 'rb') as f:
 
 def parseId(x):
     if x:
-        id = x.attrs['id'].split('§', 1)[-1]
+        id = x.attrs['id'].rsplit('§', 1)[-1]
         return id
 
 
