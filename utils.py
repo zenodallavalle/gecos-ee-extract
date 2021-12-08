@@ -115,14 +115,19 @@ def compile_value(df, id):
                     print(e)
         return value, unit
 
-    def retrieve_value(df, id, unit=None, mode='left'):
+    def retrieve_value(df, id, unit=None):
         def first_decimal(serie):
-            for x in serie:
-                if isinstance(x, Decimal):
+            for x in serie[1:]:
+                if not pd.isna(x):
                     return x
 
         results_df = df[df['id'] == id]
-        for serie in results_df.itertuples():
+        cols = list(df.columns)
+        cols.remove('id')
+        cols.remove('name')
+        cols.remove('name2')
+        results_df = results_df[cols]
+        for serie in results_df.itertuples(index=False):
             try:
                 _unit = serie.unit or ''
             except KeyError:
@@ -146,7 +151,8 @@ def compile_value(df, id):
             f'Skipping {displayed_name} [{id}] as its unit was not defined in dictionary.')
         return
     try:
-        value = retrieve_value(df, id, unit=expected_unit)
+        ignore_unit = instructions.get('ignoreUnit', False)
+        value = retrieve_value(df, id, unit=None if ignore_unit else expected_unit)
         # apply transformer if available
         value, unit = transform(value, expected_unit, instructions)
         if value is None:
