@@ -3,10 +3,7 @@ from decimal import Decimal
 import json
 import os
 import pandas as pd
-import pyperclip
 import re
-
-EEE_RUN_MODE = os.environ.get('EEE_RUN_MODE', 'production')
 
 with open('dictionary.json', 'rb') as f:
     dictionary = json.load(f)
@@ -70,8 +67,7 @@ def transform_rows(row):
 
 
 def loadDF(file):
-    folder = 'sample' if EEE_RUN_MODE == 'development' else 'source'
-    with open(f'{folder}/{file}.html', 'rb') as f:
+    with open(os.path.join('source', file), 'rb') as f:
         bs = BeautifulSoup(f.read(), 'lxml')
         table = bs.find('table', {'id': 'tabRisultati'})
         trs = table.find_all('tr')
@@ -119,14 +115,19 @@ def compile_value(df, id):
                     print(e)
         return value, unit
 
-    def retrieve_value(df, id, unit=None, mode='left'):
+    def retrieve_value(df, id, unit=None):
         def first_decimal(serie):
-            for x in serie:
-                if isinstance(x, Decimal):
+            for x in serie[1:]:
+                if not pd.isna(x):
                     return x
 
         results_df = df[df['id'] == id]
-        for serie in results_df.itertuples():
+        cols = list(df.columns)
+        cols.remove('id')
+        cols.remove('name')
+        cols.remove('name2')
+        results_df = results_df[cols]
+        for serie in results_df.itertuples(index=False):
             try:
                 _unit = serie.unit or ''
             except KeyError:
@@ -150,7 +151,8 @@ def compile_value(df, id):
             f'Skipping {displayed_name} [{id}] as its unit was not defined in dictionary.')
         return
     try:
-        value = retrieve_value(df, id, unit=expected_unit)
+        ignore_unit = instructions.get('ignoreUnit', False)
+        value = retrieve_value(df, id, unit=None if ignore_unit else expected_unit)
         # apply transformer if available
         value, unit = transform(value, expected_unit, instructions)
         if value is None:
@@ -163,9 +165,9 @@ def compile_value(df, id):
         pass
 
 
-def apply(df, template='default'):
+def apply(df, template='default.json'):
     output_lines = []
-    with open(f'templates/{template}.json', 'rb') as f:
+    with open(os.path.join('templates', template), 'rb') as f:
         lines = json.load(f)
         for line in lines:
             output_chunks = []
@@ -190,7 +192,4 @@ def apply(df, template='default'):
 
     output = os.linesep.join(output_lines)
     output = output.replace(':.', ':').replace(':,', ':')
-
-    pyperclip.copy(output)
-    print('Copyed to clipboard!')
     return output

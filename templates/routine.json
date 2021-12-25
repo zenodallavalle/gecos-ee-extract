@@ -1,0 +1,76 @@
+[
+  [
+    "T71001#Leucociti",
+    "T73001C#Neutrofili",
+    "T73003C#Linfociti",
+    "T73005#Monociti",
+    "T73007#Eosinofili",
+    "T73009#Basofili"
+  ],
+  [
+    "T71002#GR",
+    "T71003#Emoglobina",
+    "T71004#Ematocrito",
+    "T71005#MCV",
+    "T71006#MCH",
+    "T71009#Piastrine",
+    "T770A#Reticolociti",
+    "T770B#RetcolocitiPCT",
+    "T770C#RetcolocitiPCTAlto",
+    "T770D#RetcolocitiPCTMedio",
+    "T770E#RetcolocitiPCTBasso",
+    "T1073#Ferritina",
+    "T540#Transferrina",
+    "T1200#VitaminaB12",
+    "T1201#AcidoFolico"
+  ],
+  [
+    "T17#Creatinina",
+    "$(clearance della creatinina calcolata secondo Cockcroft ? ml/min)",
+    "T12#Glucosio",
+    "T13#Sodio",
+    "T14#Potassio",
+    "T29#Calcio",
+    "$(Calcio corretto per albumina ? mg/dL)",
+    "T16#Urea",
+    "T18#Acido Urico"
+  ],
+  ["T34#ColesteroloTOT", "T45#ColesteroloHDL", "T35#Trigliceridi"],
+  [
+    "T24#BilirubinaTotale",
+    "T2401#BilirubinaDiretta",
+    "T21#ALT",
+    "T36#ALP",
+    "T22#GGT"
+  ],
+  [
+    "T331#ProteineTotali",
+    "T533#Albumina",
+    "$all'elettroforesi proteica:",
+    "T52001#Albumina%",
+    "T52002#FrazioneAlfa1",
+    "T52003#FrazioneAlfa2",
+    "T52004#FrazioneBeta",
+    "T52005#FrazioneGamma"
+  ],
+  ["T879#PT"],
+  ["T532#PCR", "T544#PCT"],
+  ["0295#TroponinaT", "T1053#TSH", "T418#NT-ProBNP"],
+  [
+    "$Esame urine:",
+    "T970E#pH",
+    "T970B#Proteine",
+    "T970A#Glucosio",
+    "T970F#Emoglobina",
+    "T970G#Corpi chetonici",
+    "T970H#Nitriti",
+    "T970U#DensitaRelativa",
+    "T970PC#Rapporto proteine/creatinina",
+    "T970AC#Rapporto albumina/creatinina",
+    "T970ER#Eritrociti",
+    "T970LEU#Leucociti",
+    "T970CEL#Cellule epiteliali squamose",
+    "T970BAT#Batteri",
+    "T970COM#CommentoEsameMicroscopico"
+  ]
+]
