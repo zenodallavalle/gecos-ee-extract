@@ -1,0 +1,19 @@
+[
+  [
+    "$Esame urine:",
+    "T970E#pH",
+    "T970B#Proteine",
+    "T970A#Glucosio",
+    "T970F#Emoglobina",
+    "T970G#Corpi chetonici",
+    "T970H#Nitriti",
+    "T970U#DensitaRelativa",
+    "T970PC#Rapporto proteine/creatinina",
+    "T970AC#Rapporto albumina/creatinina",
+    "T970ER#Eritrociti",
+    "T970LEU#Leucociti",
+    "T970CEL#Cellule epiteliali squamose",
+    "T970BAT#Batteri",
+    "T970COM#CommentoEsameMicroscopico"
+  ]
+]
